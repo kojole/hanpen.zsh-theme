@@ -3,6 +3,8 @@ itiut.zsh-theme
 
 My Zsh theme
 
+![screenshot](./screenshot.png)
+
 Dependencies
 ----
 
