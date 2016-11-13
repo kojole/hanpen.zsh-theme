@@ -1,6 +1,7 @@
 # prioritize dircolors
-if whence dircolors > /dev/null && [ -f $HOME/.dircolors ]; then
-  eval "$(dircolors $HOME/.dircolors)"
+dircolors_theme_path=${ZSH_THEME_ITIUT_DIRCOLORS_THEME_PATH:-$HOME/.dircolors}
+if whence dircolors > /dev/null && [ -f $dircolors_theme_path ]; then
+  eval "$(dircolors $dircolors_theme_path)"
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 

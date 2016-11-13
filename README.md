@@ -14,7 +14,7 @@ Recommended usage
 ----
 
 -   Use powerline-patched fonts.
--   Locate a theme for `dircolors` on `~/.dircolors`.
+-   Locate a theme for GNU dircolors on `~/.dircolors` or assign the path to `ZSH_THEME_ITIUT_DIRCOLORS_THEME_PATH` variable.
 
 Others
 ----
