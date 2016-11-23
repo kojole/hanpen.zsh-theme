@@ -29,7 +29,7 @@ _itiut_zsh_theme_precmd() {
   integer elapsed
   (( elapsed = EPOCHSECONDS - ${_itiut_zsh_theme_cmd_timestamp:-$EPOCHSECONDS} ))
   if (( elapsed > ${ZSH_THEME_ITIUT_CMD_MAX_EXEC_TIME:=5} )); then
-    _itiut_zsh_theme_cmd_exec_time="⌚ "
+    _itiut_zsh_theme_cmd_exec_time="↪ "
     if (( ${+commands[pretty-time]} )) || (( ${+functions[pretty-time]} )); then
       _itiut_zsh_theme_cmd_exec_time+=$(pretty-time $elapsed)
     else
