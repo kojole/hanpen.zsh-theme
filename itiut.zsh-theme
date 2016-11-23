@@ -36,12 +36,10 @@ _itiut_zsh_theme_precmd() {
       _itiut_zsh_theme_cmd_exec_time+="${elapsed}s"
     fi
   fi
-  unset _itiut_zsh_theme_cmd_timestamp
 }
 
-autoload -U add-zsh-hook
-add-zsh-hook preexec _itiut_zsh_theme_preexec
-add-zsh-hook precmd _itiut_zsh_theme_precmd
+preexec_functions+=(_itiut_zsh_theme_preexec)
+precmd_functions+=(_itiut_zsh_theme_precmd)
 
 # prompt
 local prompt_status='%(?..%K{red} %{$fg[black]%}✘ %? )%k'
