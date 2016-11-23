@@ -16,6 +16,33 @@ if (( ${+commands[src-hilite-lesspipe.sh]} )); then
   export LESSOPEN="| ${commands[src-hilite-lesspipe.sh]} %s"
 fi
 
+# command execution time
+local _itiut_zsh_theme_cmd_exec_time
+local _itiut_zsh_theme_cmd_timestamp
+
+_itiut_zsh_theme_preexec() {
+  _itiut_zsh_theme_cmd_timestamp=$EPOCHSECONDS
+}
+
+_itiut_zsh_theme_precmd() {
+  _itiut_zsh_theme_cmd_exec_time=
+  integer elapsed
+  (( elapsed = EPOCHSECONDS - ${_itiut_zsh_theme_cmd_timestamp:-$EPOCHSECONDS} ))
+  if (( elapsed > ${ZSH_THEME_ITIUT_CMD_MAX_EXEC_TIME:=5} )); then
+    _itiut_zsh_theme_cmd_exec_time="⌚ "
+    if (( ${+commands[pretty-time]} )) || (( ${+functions[pretty-time]} )); then
+      _itiut_zsh_theme_cmd_exec_time+=$(pretty-time $elapsed)
+    else
+      _itiut_zsh_theme_cmd_exec_time+="${elapsed}s"
+    fi
+  fi
+  unset _itiut_zsh_theme_cmd_timestamp
+}
+
+autoload -U add-zsh-hook
+add-zsh-hook preexec _itiut_zsh_theme_preexec
+add-zsh-hook precmd _itiut_zsh_theme_precmd
+
 # prompt
 local prompt_status='%(?..%K{red} %{$fg[black]%}✘ %? )%k'
 local prompt_time='%K{247} %{$fg[black]%}%D{%T} %k'
@@ -35,8 +62,9 @@ ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg_bold[cyan]%} ✭"
 ZSH_THEME_GIT_PROMPT_REMOTE_STATUS_DETAILED=1
 ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" %{$fg_bold[cyan]%}⬆ %{$fg_no_bold[cyan]%}"
 ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" %{$fg_bold[red]%}⬇ %{$fg_no_bold[red]%}"
+local prompt_cmd_exec_time='$_itiut_zsh_theme_cmd_exec_time'
 local prompt_char='%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})» %f%b'
 
 PROMPT="
-${prompt_status}${prompt_time}${prompt_user}${prompt_dir}${prompt_git_info}
+${prompt_status}${prompt_time}${prompt_user}${prompt_dir}${prompt_git_info}%f%b${prompt_cmd_exec_time}
 ${prompt_char}"
