@@ -1,17 +1,20 @@
 # prioritize dircolors
 dircolors_theme_path=${ZSH_THEME_ITIUT_DIRCOLORS_THEME_PATH:-$HOME/.dircolors}
-if whence dircolors > /dev/null && [ -f $dircolors_theme_path ]; then
+if (( ${+commands[dircolors]} )) && [ -f $dircolors_theme_path ]; then
   eval "$(dircolors $dircolors_theme_path)"
   zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 fi
 
-# man page
+# colorize less
 export LESS_TERMCAP_mb=$'\E[01;31m'
 export LESS_TERMCAP_md=$'\E[01;38;5;208m'
 export LESS_TERMCAP_me=$'\E[0m'
 export LESS_TERMCAP_se=$'\E[0m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[04;38;5;111m'
+if (( ${+commands[src-hilite-lesspipe.sh]} )); then
+  export LESSOPEN="| ${commands[src-hilite-lesspipe.sh]} %s"
+fi
 
 # prompt
 local prompt_status='%(?..%K{red} %{$fg[black]%}✘ %? )%k'
