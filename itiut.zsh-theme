@@ -63,9 +63,9 @@ ZSH_THEME_GIT_PROMPT_REMOTE_STATUS_DETAILED=1
 ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" %{$fg_bold[cyan]%}⬆ %{$fg_no_bold[cyan]%}"
 ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" %{$fg_bold[red]%}⬇ %{$fg_no_bold[red]%}"
 
-local prompt_cmd_exec_time='$_itiut_zsh_theme_cmd_exec_time'
+local prompt_cmd_exec_time='%{$reset_color%}${_itiut_zsh_theme_cmd_exec_time}'
 local prompt_char='%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})» %f%b'
 
 PROMPT="
-${prompt_status}${prompt_time}${prompt_user}${prompt_dir}${prompt_git_info}%f%b${prompt_cmd_exec_time}
+${prompt_status}${prompt_time}${prompt_user}${prompt_dir}${prompt_git_info}${prompt_cmd_exec_time}
 ${prompt_char}"
