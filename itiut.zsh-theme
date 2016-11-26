@@ -17,29 +17,31 @@ if (( ${+commands[src-hilite-lesspipe.sh]} )); then
 fi
 
 # command execution time
-local _itiut_zsh_theme_cmd_exec_time
-local _itiut_zsh_theme_cmd_timestamp
+if zmodload -F -a zsh/datetime +p:EPOCHSECONDS; then
+  local _itiut_zsh_theme_cmd_exec_time
+  local _itiut_zsh_theme_cmd_timestamp
 
-_itiut_zsh_theme_preexec() {
-  _itiut_zsh_theme_cmd_timestamp=$EPOCHSECONDS
-}
+  _itiut_zsh_theme_preexec() {
+    _itiut_zsh_theme_cmd_timestamp=$EPOCHSECONDS
+  }
 
-_itiut_zsh_theme_precmd() {
-  _itiut_zsh_theme_cmd_exec_time=
-  integer elapsed
-  (( elapsed = EPOCHSECONDS - ${_itiut_zsh_theme_cmd_timestamp:-$EPOCHSECONDS} ))
-  if (( elapsed > ${ZSH_THEME_ITIUT_CMD_MAX_EXEC_TIME:=5} )); then
-    _itiut_zsh_theme_cmd_exec_time="↪ "
-    if (( ${+commands[pretty-time]} )) || (( ${+functions[pretty-time]} )); then
-      _itiut_zsh_theme_cmd_exec_time+=$(pretty-time $elapsed)
-    else
-      _itiut_zsh_theme_cmd_exec_time+="${elapsed}s"
+  _itiut_zsh_theme_precmd() {
+    _itiut_zsh_theme_cmd_exec_time=
+    integer elapsed
+    (( elapsed = EPOCHSECONDS - ${_itiut_zsh_theme_cmd_timestamp:-$EPOCHSECONDS} ))
+    if (( elapsed > ${ZSH_THEME_ITIUT_CMD_MAX_EXEC_TIME:=5} )); then
+      _itiut_zsh_theme_cmd_exec_time="↪ "
+      if (( ${+commands[pretty-time]} )) || (( ${+functions[pretty-time]} )); then
+        _itiut_zsh_theme_cmd_exec_time+=$(pretty-time $elapsed)
+      else
+        _itiut_zsh_theme_cmd_exec_time+="${elapsed}s"
+      fi
     fi
-  fi
-}
+  }
 
-preexec_functions+=(_itiut_zsh_theme_preexec)
-precmd_functions+=(_itiut_zsh_theme_precmd)
+  preexec_functions+=(_itiut_zsh_theme_preexec)
+  precmd_functions+=(_itiut_zsh_theme_precmd)
+fi
 
 # prompt
 local prompt_status='%(?..%K{red} %{$fg[black]%}✘ %? )%k'
