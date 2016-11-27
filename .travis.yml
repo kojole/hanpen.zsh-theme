@@ -1,0 +1,18 @@
+language: ruby
+os:
+- osx
+branches:
+  only:
+  - master
+install:
+- brew update
+- brew --version
+- brew install zsh
+- zsh --version
+- git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh.git test/oh-my-zsh
+- cd test/oh-my-zsh && git rev-parse HEAD
+script:
+- ZDOTDIR=$PWD/test ZSH=$PWD/test/oh-my-zsh zsh -cli 'exit 0'
+notifications:
+  slack:
+    secure: nSx3iH+5bko7edET220tEuwplIrpLXTqSp14MYvPsvOfZ1MvQT4f8ZrhldA4xf1uCDSenAnzh6KwuZFU/S3phC3jZnX/G0wLmgHd8y71dkMUZlIcgzQDakj8c0Ytm4pd8SjqAWI3WfBuvjGPzRQrDNVbpoQy1DIwWO8Wcm4ZMbo/oF1Akab5Yhn+WcFlheQsU5NMEkOq+KrJtq11MfrBTg9EvZxMfgl5KzdE3hBCUmCugqO+D8Bn3wTTqQ83WoMhvLTiBIBF96Fm1Ezd3VTr7IOTjATP7+AkGRUC6ErZpvfvzBkvY/Jbs5BDH+w8f4RMy6b+ZPso7z0Y1GngjFC/WA+Zn7QFbpzFWv1JQZrOpuU7TsOp0O38HNbURVp/60jkAC/iNhBTinbovTWFPIweeCpy5QQiNaCI+Y1zUcoDuiuDP10tdLz6AVOeA9FZLkgfqZxUt8LVVWFRAOrI7gOUbuRdfUqMQZK7Tq4kfBhDurlyS0i4LHdbQY4GzskSGZb6fU2o0UKPod3PjrxMDXtYaSC1GLhJHKfm1X+Bj5vbgefEj8Mff4RGZ6jRq1B5ZUoRMSg4C9pRtl/PL5Iqw4CdY6xERBb6Fh4fSjIC9c+Ez8unnalkdiKUURxuB+1/57enyvSBeraOll9G3fA/QM87iu4EZRUjUWzXJBRdSryxLnI=
