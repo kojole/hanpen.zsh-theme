@@ -1,7 +1,8 @@
 itiut.zsh-theme
 ====
+[![Build Status](https://travis-ci.org/itiut/itiut.zsh-theme.svg?branch=master)](https://travis-ci.org/itiut/itiut.zsh-theme)
 
-My Zsh theme
+> :art: My Zsh theme
 
 ![screenshot](./screenshot.png)
 
