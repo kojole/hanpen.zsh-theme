@@ -44,6 +44,7 @@ if zmodload -F -a zsh/datetime +p:EPOCHSECONDS; then
 fi
 
 # prompt
+setopt extended_glob
 local prompt_status='%(?..%K{red} %{$fg[black]%}✘ %? )%k'
 local prompt_time='%K{247} %{$fg[black]%}%D{%T} %k'
 local prompt_user='%K{237} %{$fg[yellow]%}%n %k'
