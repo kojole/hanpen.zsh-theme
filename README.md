@@ -9,7 +9,23 @@ hanpen.zsh-theme
 Dependencies
 ----
 
--   [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+-   [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)  
+    (specifically [lib/git.zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/git.zsh) and [lib/theme-and-appearance.zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/theme-and-appearance.zsh) in Oh My Zsh)
+
+Installation
+----
+### Zgen
+```
+# Load Oh My Zsh first
+zgen oh-my-zsh
+
+# Or load dependent libs explicitly
+zgen load robbyrussell/oh-my-zsh lib/git.zsh
+zgen load robbyrussell/oh-my-zsh lib/theme-and-appearance.zsh
+
+# Then load this theme
+zgen load kojole/hanpen.zsh-theme hanpen.zsh-theme
+```
 
 Features
 ----
