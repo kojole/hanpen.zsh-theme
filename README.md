@@ -2,7 +2,7 @@ hanpen.zsh-theme
 ====
 [![Build Status](https://travis-ci.org/kojole/hanpen.zsh-theme.svg?branch=master)](https://travis-ci.org/kojole/hanpen.zsh-theme)
 
-> :art: Hanpen Zsh theme
+> :art: Hanpen Oh My Zsh theme
 
 ![screenshot](./screenshot.png)
 
@@ -36,3 +36,7 @@ In the screenshot, followings are used:
 -   Tomorrow Night in [iTerm2-Color-Schemes](https://github.com/mbadolato/iTerm2-Color-Schemes)
 -   `dircolors.256dark` in [dircolors-solarized](https://github.com/seebi/dircolors-solarized)
 -   [Source Code Pro](https://github.com/adobe-fonts/source-code-pro)
+
+License
+----
+MIT
