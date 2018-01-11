@@ -1,9 +1,6 @@
 language: ruby
 os:
 - osx
-branches:
-  only:
-  - master
 install:
 - brew update
 - brew --version
