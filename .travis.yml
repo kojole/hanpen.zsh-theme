@@ -1,15 +1,15 @@
 language: ruby
 os:
-- osx
+  - osx
 install:
-- brew update
-- brew --version
-- brew install zsh
-- zsh --version
-- git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh.git test/oh-my-zsh
-- cd test/oh-my-zsh && git rev-parse HEAD
+  - brew update
+  - brew --version
+  - brew install zsh
+  - zsh --version
+  - git clone --depth 1 https://github.com/robbyrussell/oh-my-zsh.git test/oh-my-zsh
+  - cd test/oh-my-zsh && git rev-parse HEAD
 script:
-- ZDOTDIR=$PWD/test ZSH=$PWD/test/oh-my-zsh zsh -cli 'exit 0'
+  - ZDOTDIR=$PWD/test ZSH=$PWD/test/oh-my-zsh zsh -cli 'exit 0'
 notifications:
   slack:
-    secure: OMjzJiTZh5AnOodlEEqpzEOwAUerMQgoYbGTsK6dv2z+tlhR1rOT5XGWLYC0Dmc+zbbfSFJuv1msGDQvMTB0YbYeOurHpPt55B5pyQyUoL8GoV4HwDIBaRBsxKdGkuQhz2q1J/jPBDL3HA/lfrvEsvN1P2zilW/h/bKIkIuMZMSmt+6ppPWCERac8/KnctdcGWtQeZlOCItzlmbjka6w1doSKXvN4mRGmKw2n0Q5+fNBG2ZfzBx4yUkZM0UbvJlG3UVJ7pG8V/gDRGJo58KXiukgurfwh8h+2/wekvTo0Xgu5jg6FV5Kt7pZdqL6D1GFtUGVhzLMy/gEtCSSnv45r2DU/aELyR1F4rWWKjyn4oOnjJ92XF/uaeRuN0woOgG600EToogZujuna48xnskK8SM6ZGIP1nGaWMZUhI4g8ajTkYLf1wA1Ro8iXkdtKbdlegn3lo7cD+MYG4anezSRs024RzDE3B+WeoUUTo3uzQ+WDPKX+Z+D2eH8aGYzh4ixBH5wGjSbE+S3ltLFT3jbOx8DaLcOWMNEh/m1pXg6tsYHlm4MPDYTx6JRYZZF/fZ3cHs8rqIx5kinEUsvNzz3LUjD7OZyEVnuOd1BgCq52n7AIYwG9pWQ7/72yBVLdJ9mYT9on0NugiryVdRUFKZkF0vh/4HlrQOuUfEihxB4W6o=
+    secure: aZ49kRCkDnXq13+DeHwAa18EsMgGhTsijcw3wHcCd13MSYcFWebmuVEjZ30hq/+8u+EQwaH7bxbhRv8cMNN3Ln0WWBOj7GmfubLIJEQyVKXsOiOY/wBbxRbK/t+A5jzbIcx+EhhHNKtLvQOOHmiq+yodk7rLnkGpe9OheArvghYxymoDWsX/rG9KBmiIrL5KpXlct6hsPFy7b+n1CFnMQJim15wz3+aHbEmwCfETPEtQ4jHFRWzazpa6n1Ein6wXBe/4T5GAVDll6dz1L+adEPZ/qjXiNZ4fPAc+6jc/8LfSrCzPinuF+wY9aCYHGDr6wmGE6SNRY3/lbOSjuxqhC34Q5nWLtZ6hKWXY8983GYGK/1dzojxmxhp280GdSbyHT3X3JgNaGGihjKTfzKRpJaJBDqQAeZSl3GzbTh2ucnFX3uoN8SRhmbeoSdgC1TsLF8+CWI14izLGgWIdr/O9KJmWgBnn79Lbb+0Yx2CplGHpd3c4oJzG90KDqTRFkKh3AGuY/iJGYr4rM9StUJU/OpxgAiz3GpQMSgms+cycEVxVFenuIFRw/yenIbSPA/Rzuphmf7Xp0/tmgJSxAvJ/fSX+w0p2Sy5GZjylrDNCJcmy1R+XpizADzULHRYQZO5aU0Zaa+6rWIDzdi5v8Lf1uDxdfRxVe47yphKtekX6M/s=
