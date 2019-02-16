@@ -11,17 +11,24 @@
 - [Oh My Zsh](https://github.com/robbyrussell/oh-my-zsh)  
   (specifically [lib/git.zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/git.zsh) and [lib/theme-and-appearance.zsh](https://github.com/robbyrussell/oh-my-zsh/blob/master/lib/theme-and-appearance.zsh) in Oh My Zsh)
 
+### Optional dependencies
+
+- [zsh-async](https://github.com/mafredri/zsh-async)
+
 ## Installation
 
 ### Zgen
 
 ```
-# Load Oh My Zsh first
+# Load Oh My Zsh
 zgen oh-my-zsh
 
 # Or load dependent libs explicitly
 zgen load robbyrussell/oh-my-zsh lib/git.zsh
 zgen load robbyrussell/oh-my-zsh lib/theme-and-appearance.zsh
+
+# Load zsh-async (optional)
+zgen load mafredri/zsh-async async.zsh
 
 # Then load this theme
 zgen load uu1t/hanpen.zsh-theme hanpen.zsh-theme
@@ -30,6 +37,7 @@ zgen load uu1t/hanpen.zsh-theme hanpen.zsh-theme
 ## Features
 
 - Show git branch and status.
+  - asynchronously if [zsh-async](https://github.com/mafredri/zsh-async) is installed.
 - Show exit status except for 0 (success).
 - Show command execution time longer than `ZSH_THEME_HANPEN_CMD_MAX_EXEC_TIME` (default: `5`) seconds.
 - Colorize less(1) in man pages and with GNU Source-highlight.
