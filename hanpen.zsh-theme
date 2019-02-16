@@ -17,30 +17,32 @@ if (( ${+commands[src-hilite-lesspipe.sh]} )); then
 fi
 
 # command execution time
-if zmodload -F -a zsh/datetime +p:EPOCHSECONDS; then
-  local _hanpen_zsh_theme_cmd_exec_time
-  local _hanpen_zsh_theme_cmd_timestamp
+local cmd_exec_time
+local prompt_cmd_exec_time='%{$reset_color%}${cmd_exec_time}'
 
-  _hanpen_zsh_theme_preexec() {
-    _hanpen_zsh_theme_cmd_timestamp=$EPOCHSECONDS
+if zmodload -F -a zsh/datetime +p:EPOCHSECONDS; then
+  integer cmd_exec_time_start
+
+  _hanpen_zsh_theme_cmd_exec_time_set() {
+    cmd_exec_time_start=$EPOCHSECONDS
   }
 
-  _hanpen_zsh_theme_precmd() {
-    _hanpen_zsh_theme_cmd_exec_time=
-    integer elapsed
-    (( elapsed = EPOCHSECONDS - ${_hanpen_zsh_theme_cmd_timestamp:-$EPOCHSECONDS} ))
+  _hanpen_zsh_theme_cmd_exec_time_show() {
+    integer elapsed=${EPOCHSECONDS}-${cmd_exec_time_start:-$EPOCHSECONDS}
     if (( elapsed > ${ZSH_THEME_HANPEN_CMD_MAX_EXEC_TIME:=5} )); then
-      _hanpen_zsh_theme_cmd_exec_time="↪ "
+      cmd_exec_time='↪ '
       if (( ${+commands[pretty-time]} )) || (( ${+functions[pretty-time]} )); then
-        _hanpen_zsh_theme_cmd_exec_time+=$(pretty-time $elapsed)
+        cmd_exec_time+=$(pretty-time $elapsed)
       else
-        _hanpen_zsh_theme_cmd_exec_time+="${elapsed}s"
+        cmd_exec_time+="${elapsed}s"
       fi
+    else
+      cmd_exec_time=''
     fi
   }
 
-  preexec_functions+=(_hanpen_zsh_theme_preexec)
-  precmd_functions+=(_hanpen_zsh_theme_precmd)
+  preexec_functions+=(_hanpen_zsh_theme_cmd_exec_time_set)
+  precmd_functions+=(_hanpen_zsh_theme_cmd_exec_time_show)
 fi
 
 # prompt
@@ -66,7 +68,6 @@ ZSH_THEME_GIT_PROMPT_REMOTE_STATUS_DETAILED=1
 ZSH_THEME_GIT_PROMPT_AHEAD_REMOTE=" %{$fg_bold[cyan]%}⬆ %{$fg_no_bold[cyan]%}"
 ZSH_THEME_GIT_PROMPT_BEHIND_REMOTE=" %{$fg_bold[red]%}⬇ %{$fg_no_bold[red]%}"
 
-local prompt_cmd_exec_time='%{$reset_color%}${_hanpen_zsh_theme_cmd_exec_time}'
 local prompt_char='%(?.%{$fg_bold[green]%}.%{$fg_bold[red]%})» %f%b'
 
 PROMPT="
