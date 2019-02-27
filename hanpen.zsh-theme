@@ -53,12 +53,11 @@ if (( ${+functions[async_init]} )); then
   }
 
   _hanpen_zsh_theme_git_info_start() {
-    async_flush_jobs git_info_worker
     git_info=''
     async_job git_info_worker _hanpen_zsh_theme_git_info_print $PWD
   }
 
-  async_start_worker git_info_worker -n
+  async_start_worker git_info_worker -u -n
   async_register_callback git_info_worker _hanpen_zsh_theme_git_info_complete
   precmd_functions+=(_hanpen_zsh_theme_git_info_start)
 else
